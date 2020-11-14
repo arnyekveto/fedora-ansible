@@ -1,0 +1,85 @@
+- hosts: "localhost"
+  connection: "local"
+  tasks:
+  
+  - name: "Ping"
+    ping:
+
+  - name: Enable the RPM Fusion repository, FREE
+    dnf:
+      name: "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ansible_distribution_major_version}}.noarch.rpm"
+      state: present
+    when: ansible_distribution == 'Fedora'
+
+  - name: Enable the RPM Fusion repository, NON-FREE
+    dnf:
+      name: "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ansible_distribution_major_version}}.noarch.rpm"
+      state: present
+    when: ansible_distribution == 'Fedora'    
+    
+  - name: "Add packages"
+    package:
+      name:
+        - hugo
+        - git
+        - mc
+        - pigz
+        - mc
+        - flam3
+        - lynx
+        - lollypop
+        - papirus-icon-theme
+        - gnome-shell-extension-dash-to-dock
+        - hugo
+        - git
+        - brasero
+        - sound-juicer
+        - chromium
+        - lua
+        - fpc
+        - qemu-system-ppc
+        - gnome-tweaks
+        - telegram-desktop
+        - discord
+        - wine
+        - winetricks
+        - cawbird
+        - orion
+        - aircrack-ng
+        - nmap
+        - nc
+        - htop
+        - rclone
+        - gnome-passwordsafe
+        - blender
+        - povray
+        - gnumeric
+        - abiword
+        - apostrophe
+        - zsnes
+        - agenda
+        - fragments
+        - setzer
+        - dia
+        - polari
+        - d-feet
+        - yoshimi
+        - feedreader
+        - neovim
+        - vim
+        - httpie
+        - fd-find
+        - micro
+        - sqlite
+        - photocollage
+        - detox
+        - inxi
+        - flameshot
+      state: present
+      
+  - name: "Remove packages"
+    package:
+      name:
+        - rhythmbox
+        - libreoffice*
+      state: absent
