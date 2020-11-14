@@ -75,6 +75,7 @@
         - detox
         - inxi
         - flameshot
+        - mtr
       state: present
       
   - name: "Remove packages"
