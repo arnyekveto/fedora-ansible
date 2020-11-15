@@ -9,12 +9,14 @@
     dnf:
       name: "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ansible_distribution_major_version}}.noarch.rpm"
       state: present
+      disable_gpg_check: True
     when: ansible_distribution == 'Fedora'
 
   - name: Enable the RPM Fusion repository, NON-FREE
     dnf:
       name: "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ansible_distribution_major_version}}.noarch.rpm"
       state: present
+      disable_gpg_check: True
     when: ansible_distribution == 'Fedora'    
     
   - name: "Add packages"
@@ -76,6 +78,7 @@
         - inxi
         - flameshot
         - mtr
+        - yaru-theme
       state: present
       
   - name: "Remove packages"
